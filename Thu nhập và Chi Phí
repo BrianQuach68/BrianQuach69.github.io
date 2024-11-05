@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Tài chính</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="income-expense-tab" data-bs-toggle="tab" data-bs-target="#income-expense" type="button" role="tab">Thu nhập và chi phí</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="cash-flow-tab" data-bs-toggle="tab" data-bs-target="#cash-flow" type="button" role="tab">Dòng tiền</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="balance-sheet-tab" data-bs-toggle="tab" data-bs-target="#balance-sheet" type="button" role="tab">Cân đối tài sản</button>
+        </li>
+    </ul>
+
+    <!-- Tab Contents -->
+    <div class="tab-content" id="myTabContent">
+        <!-- Thu nhập và chi phí Tab -->
+        <div class="tab-pane fade show active" id="income-expense" role="tabpanel">
+            <div class="mt-4">
+                <h4>Thu nhập từ nghề</h4>
+                <table class="table">
+                    <tr>
+                        <td>Lương cá nhân:</td>
+                        <td><input type="number" class="form-control" placeholder="Nhập số tiền"></td>
+                    </tr>
+                    <tr>
+                        <td>Lương bạn đời:</td>
+                        <td><input type="number" class="form-control" placeholder="Nhập số tiền"></td>
+                    </tr>
+                </table>
+
+                <h4>Thu nhập làm thêm</h4>
+                <div id="extra-jobs-container">
+                    <table class="table">
+                        <tr>
+                            <td>Việc làm thêm:</td>
+                            <td><input type="text" class="form-control" placeholder="Nhập việc làm"></td>
+                            <td>Mức lương:</td>
+                            <td><input type="number" class="form-control" placeholder="Nhập mức lương"></td>
+                            <td><button class="btn btn-primary" onclick="addExtraJob()">Thêm việc làm</button></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h4>Tài chính</h4>
+                <div id="stocks-container">
+                    <table class="table">
+                        <tr>
+                            <td>Mã:</td>
+                            <td><input type="text" class="form-control" placeholder="Nhập mã"></td>
+                            <td>Giá mỗi đơn vị:</td>
+                            <td><input type="number" class="form-control" placeholder="Nhập giá"></td>
+                            <td>Số lượng:</td>
+                            <td><input type="number" class="form-control" placeholder="Nhập số lượng"></td>
+                            <td><button class="btn btn-primary" onclick="addStock()">Thêm mã cổ phiếu</button></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h4>Bất động sản</h4>
+                <div id="real-estate-container">
+                    <table class="table">
+                        <tr>
+                            <td>Mã:</td>
+                            <td><input type="text" class="form-control" placeholder="Nhập mã"></td>
+                            <td>Tiền cọc:</td>
+                            <td><input type="number" class="form-control" placeholder="Nhập tiền cọc"></td>
+                            <td>Dòng tiền:</td>
+                            <td><input type="number" class="form-control" placeholder="Nhập dòng tiền"></td>
+                            <td><button class="btn btn-primary" onclick="addRealEstate()">Thêm mã bất động sản</button></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h4>Doanh nghiệp</h4>
+                <div id="business-container">
+                    <table class="table">
+                        <tr>
+                            <td>Mã:</td>
+                            <td><input type="text" class="form-control" placeholder="Nhập mã"></td>
+                            <td>Tiền cọc:</td>
+                            <td><input type="number" class="form-control" placeholder="Nhập tiền cọc"></td>
+                            <td>Dòng tiền:</td>
+                            <td><input type="number" class="form-control" placeholder="Nhập dòng tiền"></td>
+                            <td><button class="btn btn-primary" onclick="addBusiness()">Thêm mã doanh nghiệp</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dòng tiền Tab -->
+        <div class="tab-pane fade" id="cash-flow" role="tabpanel">
+            <p class="mt-4">Mục nhập dữ liệu Dòng tiền.</p>
+        </div>
+
+        <!-- Cân đối tài sản Tab -->
+        <div class="tab-pane fade" id="balance-sheet" role="tabpanel">
+            <p class="mt-4">Mục nhập dữ liệu Cân đối tài sản.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function addExtraJob() {
+        const container = document.getElementById('extra-jobs-container');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>Việc làm thêm:</td>
+            <td><input type="text" class="form-control" placeholder="Nhập việc làm"></td>
+            <td>Mức lương:</td>
+            <td><input type="number" class="form-control" placeholder="Nhập mức lương"></td>
+            <td><button class="btn btn-primary" onclick="addExtraJob()">Thêm việc làm</button></td>
+        `;
+        container.querySelector('table').appendChild(row);
+    }
+
+    function addStock() {
+        const container = document.getElementById('stocks-container');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>Mã:</td>
+            <td><input type="text" class="form-control" placeholder="Nhập mã"></td>
+            <td>Giá mỗi đơn vị:</td>
+            <td><input type="number" class="form-control" placeholder="Nhập giá"></td>
+            <td>Số lượng:</td>
+            <td><input type="number" class="form-control" placeholder="Nhập số lượng"></td>
+            <td><button class="btn btn-primary" onclick="addStock()">Thêm mã cổ phiếu</button></td>
+        `;
+        container.querySelector('table').appendChild(row);
+    }
+
+    function addRealEstate() {
+        const container = document.getElementById('real-estate-container');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>Mã:</td>
+            <td><input type="text" class="form-control" placeholder="Nhập mã"></td>
+            <td>Tiền cọc:</td>
+            <td><input type="number" class="form-control" placeholder="Nhập tiền cọc"></td>
+            <td>Dòng tiền:</td>
+            <td><input type="number" class="form-control" placeholder="Nhập dòng tiền"></td>
+            <td><button class="btn btn-primary" onclick="addRealEstate()">Thêm mã bất động sản</button></td>
+        `;
+        container.querySelector('table').appendChild(row);
+    }
+
+    function addBusiness() {
+        const container = document.getElementById('business-container');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>Mã:</td>
+            <td><input type="text" class="form-control" placeholder="Nhập mã"></td>
+            <td>Tiền cọc:</td>
+            <td><input type="number" class="form-control" placeholder="Nhập tiền cọc"></td>
+            <td>Dòng tiền:</td>
+            <td><input type="number" class="form-control" placeholder="Nhập dòng tiền"></td>
+            <td><button class="btn btn-primary" onclick="addBusiness()">Thêm mã doanh nghiệp</button></td>
+        `;
+        container.querySelector('table').appendChild(row);
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
